@@ -2,7 +2,6 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from typing import Optional, List
 from sqlalchemy import String
 from .base import Base
-from .bids import Bid
 
 
 class User(Base):
