@@ -1,6 +1,6 @@
 from enum import Enum, auto
 
 
-class BitState(Enum):
+class BidState(Enum):
     running = auto()
     ended = auto()

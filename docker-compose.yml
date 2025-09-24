@@ -6,13 +6,13 @@ services:
     container_name: postgres_db
     restart: always
     environment:
-      POSTGRES_USER: olex
-      POSTGRES_PASSWORD: olex
-      POSTGRES_DB: olex_db
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "${DB_PORT}:5432"
 
   api:
     build:
@@ -23,7 +23,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgresql+psycopg2://olex:olex@db:5432/olex_db
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_HOST}:${DB_PORT}/${POSTGRES_DB}
     ports:
       - "8000:8000"
     volumes:
