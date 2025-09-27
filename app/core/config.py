@@ -4,10 +4,10 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 ENV_PATH = BASE_DIR.joinpath(".env")
-print(f"{ENV_PATH=}")
 
 
 class Settings(BaseSettings):
+
     POSTGRES_USER: str
     POSTGRES_PASSWORD: str
     DB_HOST: str
@@ -15,6 +15,9 @@ class Settings(BaseSettings):
     POSTGRES_DB: str
 
     db_echo: bool = False
+
+    PROJECT_NAME: str = "PET-project Auction"
+    api_v1_prefix: str = "/api/v1"
 
     @property
     def database_url(self) -> str:
@@ -25,6 +28,7 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ENV_PATH
+        extra = "allow"
 
 
 settings = Settings()

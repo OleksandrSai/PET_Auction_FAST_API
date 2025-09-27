@@ -1,17 +1,17 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String
+from sqlalchemy import String, ForeignKey
 from .base import Base
 from .user import User
 from .lots import Lot
 
 
 class Bid(Base):
-    lot_id: Mapped[int] = mapped_column(String(120))
-    start_price: Mapped[float] = mapped_column(default=0.0, nullable=False)
-    is_active: Mapped[bool] = mapped_column(default=True)
+    amount: Mapped[float] = mapped_column(default=0.0)
+    lot_id: Mapped[int] = mapped_column(ForeignKey("lot.id"))
+    user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
 
-    user: Mapped["User"] = relationship(back_populates="bids")
-    lot: Mapped["Lot"] = relationship(back_populates="lot")
+    lot: Mapped["Lot"] = relationship("Lot", back_populates="bids")
+    user: Mapped["User"] = relationship("User", back_populates="bids")
 
-    def __repr__(self) -> str:
-        return f"Bid(lot_id={self.id!r}, start_price={self.start_price!r}, is_active={self.is_active!r})"
+    def __repr__(self):
+        return f"Bid(id={self.id!r}, amount={self.amount!r}, lot_id={self.lot_id!r}, user_id={self.user_id!r})"

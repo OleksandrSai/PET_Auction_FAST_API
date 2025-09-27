@@ -10,7 +10,10 @@ class User(Base):
     name: Mapped[Optional[str]]
 
     bids: Mapped[List["Bid"]] = relationship(
-        back_populates="user", cascade="all, delete-orphan"
+        "Bid",
+        back_populates="user",
+        cascade="all, delete-orphan",
+        single_parent=True,
     )
 
     def __repr__(self) -> str:

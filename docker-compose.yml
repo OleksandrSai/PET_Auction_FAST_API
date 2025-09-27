@@ -20,10 +20,13 @@ services:
     restart: always
     depends_on:
       - db
+    env_file:
+      - .env
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_HOST}:${DB_PORT}/${POSTGRES_DB}
     ports:
-      - "8000:8000"
+      - "${API_PORT}:8000"
+    command: bash -c "uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
     volumes:
       - ./app:/app
 
