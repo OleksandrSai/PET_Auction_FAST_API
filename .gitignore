@@ -79,4 +79,5 @@ dmypy.json
 
 # Node.js (если есть фронтенд)
 node_modules/
-dist/
+app/certs/
+

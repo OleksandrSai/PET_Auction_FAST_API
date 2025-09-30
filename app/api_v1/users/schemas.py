@@ -4,14 +4,27 @@ from typing import Optional
 
 class UserBase(BaseModel):
     login: str
-    password: str
     name: Optional[str]
 
 
-class UserCreate(BaseModel):
+class UserCreate(UserBase):
+    password: str
     pass
 
 
-class User(UserBase):
+class UserUpdate(UserCreate):
+    pass
+
+
+class UserUpdatePartial(UserCreate):
+    login: Optional[str]
+    password: Optional[str]
+    name: Optional[str]
+
+
+class UserPublic(UserBase):
     id: int
-    model_config = ConfigDict(from_attributes=True)
+    model_config = ConfigDict(
+        from_attributes=True,
+        extra="ignore",
+    )

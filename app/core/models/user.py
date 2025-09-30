@@ -5,8 +5,8 @@ from .base import Base
 
 
 class User(Base):
-    login: Mapped[str] = mapped_column(String(255))
-    password: Mapped[str] = mapped_column(String(255))
+    login: Mapped[str] = mapped_column(String(255), unique=True)
+    password: Mapped[bytes] = mapped_column(nullable=False)
     name: Mapped[Optional[str]]
 
     bids: Mapped[List["Bid"]] = relationship(
