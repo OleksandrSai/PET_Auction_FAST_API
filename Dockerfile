@@ -6,14 +6,13 @@ ENV PYTHONPATH /app
 
 WORKDIR /app
 
-
 COPY requirements.txt .
 
-
 RUN pip install --no-cache-dir -r requirements.txt
-
-COPY /app/* /app/
+COPY app/ /app/
 COPY app/alembic.ini /app/
+
+RUN ls -la /app/test || echo "NO TESTS COPIED"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends openssl \
@@ -24,7 +23,6 @@ RUN apt-get update \
     && openssl pkey -in /app/certs/jwt-private.pem -pubout -out /app/certs/jwt-public.pem \
     && echo "Public key generated"
 
-
-
 RUN cp .env.example .env || true
+
 

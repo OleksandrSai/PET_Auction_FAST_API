@@ -1,17 +1,18 @@
 from fastapi import APIRouter, Depends
-from . import service
 from . import schema
+from .service import validate_user
 from ..users.schemas import UserPublic
+from .token_auth import auth_service
 
 router = APIRouter(tags=["Authentication"])
 
 
 @router.post("/login/", response_model=schema.TokenInfo)
-def auth_login(user: UserPublic = Depends(service.validate_user)):
-    jwt_payload = {
-        "sub": user.id,
-        "username": user.name,
-        "login": user.login,
-    }
-    token = service.encode_jwt(payload=jwt_payload)
-    return schema.TokenInfo(access_token=token, token_type="Bearer")
+def auth_login(user: UserPublic = Depends(validate_user)):
+    access_token = auth_service.create_access_token(user=user)
+    refresh_token = auth_service.create_refresh_token(user=user)
+
+    return schema.TokenInfo(
+        access_token=access_token,
+        refresh_token=refresh_token,
+    )

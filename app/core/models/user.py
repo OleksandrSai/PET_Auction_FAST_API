@@ -17,4 +17,4 @@ class User(Base):
     )
 
     def __repr__(self) -> str:
-        return f"User(id={self.id!r}, login={self.login!r}, name={self.name!r})"
+        return f"User({self.id=!r}, {self.login=!r}, {self.name=!r})"

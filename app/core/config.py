@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from pydantic_settings import BaseSettings
 from pathlib import Path
 
@@ -12,7 +12,7 @@ class AuthJWT(BaseModel):
     public_key_path: Path = Path("certs") / "jwt-public.pem"
     algorithm: str = "RS256"
     access_token_expire_minutes: int = 15
-    refresh_token_expire_minutes: int = 200
+    refresh_token_expire_days: int = 30
 
 
 class Settings(BaseSettings):
@@ -37,9 +37,9 @@ class Settings(BaseSettings):
             f"@{self.DB_HOST}:{self.DB_PORT}/{self.POSTGRES_DB}"
         )
 
-    class Config:
-        env_file = ENV_PATH
-        extra = "allow"
+    model_config = ConfigDict(
+        extra="allow",
+    )
 
 
 settings = Settings()

@@ -1,4 +1,7 @@
+from pathlib import Path
 import sys
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 import asyncio
 import pytest
 import asyncpg
@@ -6,12 +9,13 @@ from core.db_helper import DatabaseHelper
 from core.models import Base
 from core.config import settings
 
+
 if sys.platform.startswith("win"):
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 DATABASE_NAME = "test_db"
-ADMIN_URL = f"postgresql://{settings.POSTGRES_USER}:{settings.POSTGRES_PASSWORD}@localhost:5432/postgres"
-DATABASE_URL = f"postgresql+asyncpg://{settings.POSTGRES_USER}:{settings.POSTGRES_PASSWORD}@localhost:5432/{DATABASE_NAME}"
+ADMIN_URL = f"postgresql://{settings.POSTGRES_USER}:{settings.POSTGRES_PASSWORD}@db:5432/postgres"
+DATABASE_URL = f"postgresql+asyncpg://{settings.POSTGRES_USER}:{settings.POSTGRES_PASSWORD}@db:5432/{DATABASE_NAME}"
 
 test_db_helper = DatabaseHelper(url=DATABASE_URL, echo=False)
 

@@ -11,6 +11,8 @@ class UserCreate(UserBase):
     password: str
     pass
 
+    model_config = ConfigDict(from_attributes=True)
+
 
 class UserUpdate(UserCreate):
     pass
@@ -24,6 +26,7 @@ class UserUpdatePartial(UserCreate):
 
 class UserPublic(UserBase):
     id: int
+
     model_config = ConfigDict(
         from_attributes=True,
         extra="ignore",

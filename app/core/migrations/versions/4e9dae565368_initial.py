@@ -1,8 +1,8 @@
-"""upd
+"""initial
 
-Revision ID: e88f11e1d471
+Revision ID: 4e9dae565368
 Revises: 
-Create Date: 2025-09-30 19:28:56.081118
+Create Date: 2025-10-02 19:52:11.514762
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'e88f11e1d471'
+revision: str = '4e9dae565368'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -24,7 +24,9 @@ def upgrade() -> None:
     op.create_table('lot',
     sa.Column('title', sa.String(length=120), nullable=False),
     sa.Column('start_price', sa.Float(), nullable=False),
-    sa.Column('bid_state', sa.Enum('running', 'ended', name='bidstate'), nullable=False),
+    sa.Column('state', sa.Enum('RUNNING', 'ENDED', 'ARCHIVED', 'SCHEDULED', 'CANCELLED', name='lotstate'), nullable=False),
+    sa.Column('image_url', sa.String(length=255), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
@@ -40,8 +42,10 @@ def upgrade() -> None:
     op.create_index(op.f('ix_user_id'), 'user', ['id'], unique=False)
     op.create_table('bid',
     sa.Column('amount', sa.Float(), nullable=False),
+    sa.Column('state', sa.Enum('PENDING', 'ACCEPTED', 'REJECTED', name='bidstate'), nullable=False),
     sa.Column('lot_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['lot_id'], ['lot.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
