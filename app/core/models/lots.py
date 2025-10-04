@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String
+from sqlalchemy import String, DateTime
 from .base import Base
 from typing import List
 from utils.enums import LotState
@@ -11,8 +11,14 @@ class Lot(Base):
     start_price: Mapped[float] = mapped_column(default=0.0, nullable=False)
     state: Mapped[LotState] = mapped_column(default=LotState.SCHEDULED)
     image_url: Mapped[str] = mapped_column(String(255), nullable=True)
+    start_time: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=lambda: datetime.now(timezone.utc)
+    )
+    end_time: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=lambda: datetime.now(timezone.utc)
+    )
     created_at: Mapped[datetime] = mapped_column(
-        default=lambda: datetime.now(timezone.utc)
+        DateTime(timezone=True), default=lambda: datetime.now(timezone.utc)
     )
 
     bids: Mapped[List["Bid"]] = relationship(
@@ -20,4 +26,4 @@ class Lot(Base):
     )
 
     def __repr__(self):
-        return f"Lot({self.id=!r}, {self.title=!r}, {self.state=!r}, {self.start_price=!r})"
+        return f"Lot({self.id=!r}, {self.title=!r}, {self.state=!r}, {self.start_price=!r} {self.image_url=!r})"

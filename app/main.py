@@ -9,7 +9,7 @@ app = FastAPI(name=settings.PROJECT_NAME, docs_url=settings.api_v1_prefix + "/do
 app.include_router(router=router_v1, prefix=settings.api_v1_prefix)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f"{settings.api_v1_prefix}/auth/login/")
-app.add_middleware(AuthMiddleware)
+# app.add_middleware(AuthMiddleware)
 
 
 @app.get("/")

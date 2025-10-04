@@ -9,6 +9,7 @@ class UserBase(BaseModel):
 
 class UserCreate(UserBase):
     password: str
+    balance: float
     pass
 
     model_config = ConfigDict(from_attributes=True)
@@ -22,6 +23,7 @@ class UserUpdatePartial(UserCreate):
     login: Optional[str]
     password: Optional[str]
     name: Optional[str]
+    balance: Optional[float]
 
 
 class UserPublic(UserBase):

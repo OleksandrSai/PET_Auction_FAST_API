@@ -1,5 +1,5 @@
 from api_v1.auth.token_builder import TokenBuilder
-from api_v1.users.schemas import UserPublic
+from api_v1.users.schema import UserPublic
 from core.config import settings
 from utils.enums import TokenType
 

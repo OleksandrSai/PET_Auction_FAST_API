@@ -2,7 +2,7 @@ import pytest
 from datetime import datetime, timedelta
 from unittest.mock import patch
 from api_v1.auth.token_auth import AuthService
-from api_v1.users.schemas import UserPublic
+from api_v1.users.schema import UserPublic
 from core.config import settings
 
 

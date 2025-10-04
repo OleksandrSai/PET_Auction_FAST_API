@@ -2,7 +2,7 @@ import pytest
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from api_v1.users import service as user_service
-from api_v1.users.schemas import UserCreate
+from api_v1.users.schema import UserCreate
 from core.models import User
 import sys
 import asyncio

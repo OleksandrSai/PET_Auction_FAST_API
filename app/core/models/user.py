@@ -7,7 +7,8 @@ from .base import Base
 class User(Base):
     login: Mapped[str] = mapped_column(String(255), unique=True)
     password: Mapped[bytes] = mapped_column(nullable=False)
-    name: Mapped[Optional[str]]
+    name: Mapped[Optional[str]] = mapped_column(default="Alex")
+    balance: Mapped[float] = mapped_column(default=80000.0, nullable=False)
 
     bids: Mapped[List["Bid"]] = relationship(
         "Bid",

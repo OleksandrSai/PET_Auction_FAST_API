@@ -1,6 +1,20 @@
+from typing import Sequence
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from core.models import Bid
+from sqlalchemy import Result
+from . import schema
 
 
-def get_all_bids(session: AsyncSession):
-    pass
+async def get_all_bids(session: AsyncSession) -> Sequence[Bid]:
+    stmt = select(Bid).order_by(Bid.id)
+    result: Result = await session.execute(stmt)
+    return result.scalars().all()
+
+
+async def create_bid(session: AsyncSession, bid_in: schema.BidCreate) -> Bid:
+    bid = Bid(**bid_in.model_dump())
+    session.add(bid)
+    await session.commit()
+    await session.refresh(bid)
+    return bid

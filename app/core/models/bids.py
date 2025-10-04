@@ -1,7 +1,6 @@
 from datetime import timezone, datetime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String, ForeignKey
-
+from sqlalchemy import ForeignKey, DateTime
 from utils.enums import BidState
 from .base import Base
 from .user import User
@@ -14,9 +13,8 @@ class Bid(Base):
     lot_id: Mapped[int] = mapped_column(ForeignKey("lot.id"))
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
     created_at: Mapped[datetime] = mapped_column(
-        default=lambda: datetime.now(timezone.utc)
+        DateTime(timezone=True), default=lambda: datetime.now(timezone.utc)
     )
-
     lot: Mapped["Lot"] = relationship("Lot", back_populates="bids")
     user: Mapped["User"] = relationship("User", back_populates="bids")
 

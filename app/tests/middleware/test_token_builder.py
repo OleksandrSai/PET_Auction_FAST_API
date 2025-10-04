@@ -4,7 +4,7 @@ from unittest.mock import Mock, patch
 
 from api_v1.auth.token_builder import TokenBuilder
 from utils.enums import TokenType
-from api_v1.users.schemas import UserPublic
+from api_v1.users.schema import UserPublic
 
 
 class TestTokenBuilder:

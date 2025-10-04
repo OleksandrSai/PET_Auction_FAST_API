@@ -1,5 +1,5 @@
 from datetime import timedelta
-from api_v1.users.schemas import UserPublic
+from api_v1.users.schema import UserPublic
 from utils.enums import TokenType
 
 

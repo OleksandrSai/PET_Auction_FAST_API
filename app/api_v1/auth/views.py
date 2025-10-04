@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from . import schema
 from .service import validate_user
-from ..users.schemas import UserPublic
+from ..users.schema import UserPublic
 from .token_auth import auth_service
 
 router = APIRouter(tags=["Authentication"])

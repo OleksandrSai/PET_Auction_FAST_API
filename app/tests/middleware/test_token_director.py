@@ -3,7 +3,7 @@ from datetime import timedelta
 from unittest.mock import Mock, patch
 from api_v1.auth.token_director import TokenDirector
 from utils.enums import TokenType
-from api_v1.users.schemas import UserPublic
+from api_v1.users.schema import UserPublic
 from core.config import settings
 
 

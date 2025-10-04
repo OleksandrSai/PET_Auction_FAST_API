@@ -6,7 +6,7 @@ from fastapi import (
 )
 from sqlalchemy import select
 
-from api_v1.users.schemas import UserPublic
+from api_v1.users.schema import UserPublic
 from utils.security import validate_password
 from core import db_helper
 from core.models import User

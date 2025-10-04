@@ -1,6 +1,6 @@
 from typing import Sequence
 from sqlalchemy.ext.asyncio import AsyncSession
-from api_v1.users.schemas import UserCreate, UserUpdate, UserUpdatePartial, UserPublic
+from api_v1.users.schema import UserCreate, UserUpdate, UserUpdatePartial, UserPublic
 from utils.security import hash_password
 from core.models import User
 from sqlalchemy.engine import Result

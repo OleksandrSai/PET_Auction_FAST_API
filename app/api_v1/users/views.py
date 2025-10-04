@@ -4,7 +4,7 @@ from starlette import status
 from core import db_helper
 from .dependencies import get_user_by_id
 from . import service
-from .schemas import UserPublic, UserCreate, UserUpdate, UserUpdatePartial
+from .schema import UserPublic, UserCreate, UserUpdate, UserUpdatePartial
 
 router = APIRouter(tags=["Users"])
 
