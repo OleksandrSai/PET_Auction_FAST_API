@@ -1,4 +1,3 @@
-from __future__ import annotations
 from pydantic import field_validator, ConfigDict
 from datetime import datetime, timezone
 from api_v1.base_schema import BaseLot
@@ -7,7 +6,7 @@ from api_v1.bids.schema import BidResponse
 
 class LotRelationShipsResponse(BaseLot):
     bids: list[BidResponse]
-    max_bid: int | None
+    max_bid: int
     model_config = ConfigDict(from_attributes=True)
 
 

@@ -1,4 +1,3 @@
-from __future__ import annotations
 from datetime import datetime, timezone
 from pydantic import field_validator, ConfigDict
 from api_v1.base_schema import BaseBid, BaseLot, BaseUser
