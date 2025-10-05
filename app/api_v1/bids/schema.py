@@ -1,13 +1,16 @@
 from datetime import datetime, timezone
 from pydantic import field_validator, ConfigDict
-from api_v1.base_schema import BaseBid, BaseLot, BaseUser
+from api_v1.base_schema import BaseBid
 from api_v1.users.schema import UserPublic
 
 
 class BidResponse(BaseBid):
     created_at: datetime
     user: UserPublic
-    model_config = ConfigDict(from_attributes=True)
+    model_config = ConfigDict(
+        from_attributes=True,
+        use_enum_values=False,
+    )
 
 
 class BidCreate(BidResponse):

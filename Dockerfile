@@ -12,8 +12,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app/ /app/
 COPY app/alembic.ini /app/
 
-RUN ls -la /app/test || echo "NO TESTS COPIED"
-
 RUN apt-get update \
     && apt-get install -y --no-install-recommends openssl \
     && rm -rf /var/lib/apt/lists/* \

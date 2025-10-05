@@ -7,7 +7,10 @@ from api_v1.bids.schema import BidResponse
 class LotRelationShipsResponse(BaseLot):
     bids: list[BidResponse]
     max_bid: int
-    model_config = ConfigDict(from_attributes=True)
+    model_config = ConfigDict(
+        from_attributes=True,
+        use_enum_values=False,
+    )
 
 
 class CreateLot(BaseLot):
