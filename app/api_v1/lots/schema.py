@@ -1,19 +1,17 @@
-from typing import Optional
-from pydantic import BaseModel, ConfigDict, field_validator
-from api_v1.bids.schema import BaseBid
-from utils.enums import LotState
+from __future__ import annotations
+from pydantic import field_validator, ConfigDict
 from datetime import datetime, timezone
+from api_v1.base_schema import BaseLot
+from api_v1.bids.schema import BidResponse
 
 
-class BaseLot(BaseModel):
-    title: str
-    start_price: float
-    state: LotState
-    image_url: Optional[str]
-    start_time: datetime
-    end_time: datetime
-    created_at: datetime
+class LotRelationShipsResponse(BaseLot):
+    bids: list[BidResponse]
+    max_bid: int | None
+    model_config = ConfigDict(from_attributes=True)
 
+
+class CreateLot(BaseLot):
     @classmethod
     @field_validator("start_time", "end_time", "created_at")
     def ensure_utc(cls, v: datetime) -> datetime:
@@ -22,11 +20,3 @@ class BaseLot(BaseModel):
             return v.replace(tzinfo=timezone.utc)
         else:
             return v.astimezone(timezone.utc)
-
-
-class CreateLot(BaseLot):
-    pass
-
-
-# class LotRelationshipModel(BaseLot):
-#     bids: list[BaseBid]

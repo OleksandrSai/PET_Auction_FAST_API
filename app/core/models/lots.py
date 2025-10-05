@@ -1,3 +1,4 @@
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, DateTime
 from .base import Base
@@ -24,6 +25,12 @@ class Lot(Base):
     bids: Mapped[List["Bid"]] = relationship(
         "Bid", back_populates="lot", cascade="all, delete-orphan", single_parent=True
     )
+
+    @hybrid_property
+    def max_bid(self):
+        if not self.bids:
+            return self.start_price
+        return max(bid.amount for bid in self.bids)
 
     def __repr__(self):
         return f"Lot({self.id=!r}, {self.title=!r}, {self.state=!r}, {self.start_price=!r} {self.image_url=!r})"

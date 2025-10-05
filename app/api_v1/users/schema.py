@@ -1,18 +1,12 @@
-from pydantic import BaseModel, ConfigDict
+from pydantic import ConfigDict
 from typing import Optional
+from api_v1.base_schema import BaseUser
 
 
-class UserBase(BaseModel):
-    login: str
-    name: Optional[str]
-
-
-class UserCreate(UserBase):
+class UserCreate(BaseUser):
     password: str
     balance: float
     pass
-
-    model_config = ConfigDict(from_attributes=True)
 
 
 class UserUpdate(UserCreate):
@@ -26,7 +20,7 @@ class UserUpdatePartial(UserCreate):
     balance: Optional[float]
 
 
-class UserPublic(UserBase):
+class UserPublic(BaseUser):
     id: int
 
     model_config = ConfigDict(

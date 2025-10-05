@@ -18,3 +18,9 @@ async def create_bid(session: AsyncSession, bid_in: schema.BidCreate) -> Bid:
     await session.commit()
     await session.refresh(bid)
     return bid
+
+
+async def delete_bid(session: AsyncSession, bid_id: int) -> None:
+    bid = await session.get(Bid, bid_id)
+    await session.delete(bid)
+    await session.commit()
