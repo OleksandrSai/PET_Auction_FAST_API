@@ -1,0 +1,64 @@
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-sm rounded-4 p-4">
+      <div class="text-center mb-4">
+        <h3 class="text-success fw-bold">Create Account</h3>
+      </div>
+
+      <form>
+        <div class="mb-3">
+          <label for="registerName" class="form-label">Name</label>
+          <input
+            id="registerName"
+            type="text"
+            class="form-control"
+            placeholder="Your name"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="login" class="form-label">Login</label>
+          <input
+            id="login"
+            type="text"
+            class="form-control"
+            placeholder="admin123"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="registerPassword" class="form-label">Password</label>
+          <input
+            id="registerPassword"
+            type="password"
+            class="form-control"
+            placeholder="••••••••"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            class="form-control"
+            placeholder="••••••••"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-success w-100 rounded-pill">
+          Register
+        </button>
+      </form>
+
+      <div class="text-center mt-3">
+        <p class="mb-0">
+          Already have an account?
+          <a routerLink="/login" class="text-success fw-semibold text-decoration-none">
+            Sign In
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

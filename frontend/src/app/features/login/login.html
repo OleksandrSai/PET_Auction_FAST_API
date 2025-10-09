@@ -1,0 +1,51 @@
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-sm rounded-4 p-4">
+      <div class="text-center mb-4">
+        <h3 class="text-success fw-bold">Sign In</h3>
+        <p class="text-muted mb-0">Enter your account details to continue</p>
+      </div>
+
+      <form>
+        <div class="mb-3">
+          <label for="login" class="form-label">Login</label>
+          <input
+            id="login"
+            type="text"
+            class="form-control"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="loginPassword" class="form-label">Password</label>
+          <input
+            id="loginPassword"
+            type="password"
+            class="form-control"
+          />
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="remember" />
+            <label class="form-check-label" for="remember">Remember me</label>
+          </div>
+          <a href="#" class="text-success small text-decoration-none">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100 rounded-pill">
+          Sign In
+        </button>
+      </form>
+
+      <div class="text-center mt-3">
+        <p class="mb-0">
+          Don’t have an account?
+          <a routerLink="/{{[AppRoutes.registration]}}" class="text-success fw-semibold text-decoration-none">
+            Register
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

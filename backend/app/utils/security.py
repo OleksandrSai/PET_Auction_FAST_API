@@ -31,5 +31,6 @@ def decode_jwt(
         token,
         public_key,
         algorithms=[algorithm],
+        options={"verify_sub": False}
     )
     return decoded
