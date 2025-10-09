@@ -1,29 +1,31 @@
+# =============================================
+# Python - Backend
+# =============================================
 # Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
+backend/__pycache__/
+backend/certs/
+backend/*.py[cod]
+backend/*$py.class
+backend/*.so
 
 # Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-*.egg-info/
-.installed.cfg
-*.egg
+backend/build/
+backend/develop-eggs/
+backend/dist/
+backend/downloads/
+backend/eggs/
+backend/.eggs/
+backend/parts/
+backend/sdist/
+backend/var/
+backend/*.egg-info/
+backend/.installed.cfg
+backend/*.egg
 
-# Virtual environment
+# Virtual environments (all possible locations)
+.venv/
+backend/.venv/
+backend/venv/
 venv/
 env/
 ENV/
@@ -31,53 +33,128 @@ env.bak/
 venv.bak/
 
 # PyInstaller
-*.manifest
-*.spec
+backend/*.manifest
+backend/*.spec
 
 # Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+backend/pip-log.txt
+backend/pip-delete-this-directory.txt
 
 # Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
+backend/htmlcov/
+backend/.tox/
+backend/.nox/
+backend/.coverage
+backend/.coverage.*
+backend/.cache
+backend/nosetests.xml
+backend/coverage.xml
+backend/*.cover
+backend/.hypothesis/
+backend/.pytest_cache/
 
 # mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
+backend/.mypy_cache/
+backend/.dmypy.json
+backend/dmypy.json
 
+# =============================================
+# Node.js / Frontend
+# =============================================
+frontend/node_modules/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.lock-wscript
+
+# Frontend build outputs
+frontend/build/
+frontend/dist/
+frontend/.next/
+frontend/out/
+
+# Frontend environment variables
+frontend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+
+# Parcel bundler
+frontend/.cache/
+frontend/.parcel-cache/
+
+# =============================================
+# IDE
+# =============================================
 # VS Code
 .vscode/
+frontend/.vscode/
+backend/.vscode/
 
 # PyCharm
 .idea/
+backend/.idea/
+
+# =============================================
+# Operating Systems
+# =============================================
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Linux
+*~
+
+# =============================================
+# Application Specific
+# =============================================
+# Databases
+backend/*.db
+backend/*.sqlite3
+
+# Logs
+backend/*.log
+
+# SSL Certificates
+backend/app/certs/
 
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# FastAPI / Uvicorn logs
-*.log
+# Common virtual environments (just in case)
+.venv*/
+venv*/
+env*/
 
-# dotenv environment variables
+# Environment files
 .env
 .env.*
+!.env.example
 
-# SQLite database (если используете)
-*.db
-*.sqlite3
+# Backup files
+*.bak
+*.backup
 
-# Node.js (если есть фронтенд)
-node_modules/
-app/certs/
+# Poetry
+poetry.lock
+backend/poetry.lock
 
+# Pipenv
+Pipfile.lock
+backend/Pipfile.lock
+
+# PyCharm specific
+backend/.idea/workspace.xml
+backend/.idea/modules.xml
+backend/.idea/misc.xml
+
+# API documentation
+backend/openapi.json
+
+# Temporary files
+*.tmp
+*.temp
