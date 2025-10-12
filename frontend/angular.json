@@ -30,8 +30,10 @@
               }
             ],
             "styles": [
+
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
@@ -90,7 +92,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
               }
             ],
             "styles": [

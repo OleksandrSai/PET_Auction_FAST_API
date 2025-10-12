@@ -8,6 +8,7 @@ class LotRelationShipsResponse(BaseLot):
     bids: list[BidResponse]
     max_bid: int
     created_at: datetime
+
     model_config = ConfigDict(
         from_attributes=True,
         use_enum_values=False,

@@ -1,1 +1,96 @@
-<p>lots works!</p>
+<div class="table">
+  <div class="bord">
+    <div class="menu-table">
+      <div class="row">
+        <button (click)="openWindowCreateLot()" nz-button nzType="default">Create lot</button>
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input #inp (keyup)="search(inp.value)" type="text" nz-input placeholder="Search" />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <span nz-icon nzType="search"></span>
+        </ng-template>
+        <div class="select_page_size">
+          <div class="select_page_size_title">Items per page:</div>
+          <div class="select_page_size_body">
+<!--            <nz-select [(ngModel)]="_pageSize" (ngModelChange)="onPageSizeChange($event)">-->
+<!--              <nz-option *ngFor="let item of pageSizes" nzValue="{{ item }}" nzLabel="{{ item }}"></nz-option>-->
+<!--            </nz-select>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <nz-table
+      ngSkipHydration
+      [nzShowPagination]="false"
+      #nzTable
+      [nzData]="pageDataArr"
+      nzTableLayout="fixed"
+      [nzPageSize]="pageSize"
+    >
+      <thead>
+        <tr>
+          <th nzWidth="75px">Details</th>
+          <th nzWidth="200px">Image</th>
+          <th nzWidth="120px"> Lot id</th>
+          <th>Title</th>
+          <th>Start price</th>
+          <th>Max current bid</th>
+          <th>State</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+  @for (element of nzTable.data; track element.id) {
+    <tr>
+      <td>
+        <button
+          nz-button
+          nzType="text"
+
+          (nzExpandChange)="onExpandChange(element.id)"
+        >
+          <span nz-icon [nzType]="expandSet.has(element.id) ? 'minus' : 'plus'"></span>
+        </button>
+      </td>
+      <td>{{ element.id }}</td>
+      <td>{{ element.title }}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td class="option"></td>
+    </tr>
+    @if (expandSet.has(element.id)) {
+      <tr>
+        <td [colSpan]="10">
+          <div class="parent-container">
+            <div class="container">
+              <!-- Контент для раскрывающейся секции -->
+            </div>
+          </div>
+        </td>
+      </tr>
+    }
+  }
+</tbody>
+    </nz-table>
+
+    <div class="footer-table">
+      <ng-container *ngTemplateOutlet="customPaginationTemplate"></ng-container>
+      <ng-template #customPaginationTemplate>
+        <nz-pagination
+          (nzPageIndexChange)="onPageIndexChange($event)"
+          [nzPageIndex]="pageIndex"
+          [nzTotal]="totalItems"
+          [nzPageSize]="pageSize"
+          [nzShowTotal]="rangeTemplate"
+        ></nz-pagination>
+        <ng-template #totalTemplate let-total>Total {{ total }} items</ng-template>
+        <ng-template #rangeTemplate let-range="range" let-total>
+          {{ range[0] }}-{{ range[1] }} of {{ total }} items
+        </ng-template>
+      </ng-template>
+    </div>
+  </div>
+</div>
+

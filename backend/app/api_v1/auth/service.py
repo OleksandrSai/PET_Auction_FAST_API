@@ -11,7 +11,6 @@ from utils.security import validate_password
 from core import db_helper
 from core.models import User
 from utils.security import decode_jwt
-from jwt import ExpiredSignatureError, InvalidTokenError
 
 from utils.enums import TokenType
 

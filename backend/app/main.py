@@ -11,18 +11,20 @@ app.include_router(router=router_v1, prefix=settings.api_v1_prefix)
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f"{settings.api_v1_prefix}/auth/login/")
 # app.add_middleware(AuthMiddleware)
 
-# CORS настройки
-
-
-
+origins = [
+    "http://localhost:4200",
+    "http://127.0.0.1:4200",
+    "http://frontend:4200",
+]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4000", "http://frontend:4000"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.get("/")
 async def root():

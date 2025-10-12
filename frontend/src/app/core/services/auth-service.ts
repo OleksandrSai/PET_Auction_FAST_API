@@ -2,7 +2,7 @@ import {Injectable, signal} from '@angular/core';
 import {Observable, tap} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {AuthResponse} from '../../shared/interfaces/auth-response';
-import {User} from '../../shared/interfaces/user';
+import {UserAuth} from '../../shared/interfaces/user';
 import {jwtDecode} from 'jwt-decode';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {DecodedToken} from '../../shared/interfaces/decoded-token';
@@ -20,7 +20,7 @@ export class AuthService {
 
   public flagNotAuth = signal<boolean>(false);
 
-  login(user: User): Observable<AuthResponse> {
+  login(user: UserAuth): Observable<AuthResponse> {
     return this.http.post<AuthResponse>('/api/v1/auth/login/', user).pipe(
       tap(({ access_token, refresh_token, token_type }) => {
         this.setToken(access_token, refresh_token, token_type);

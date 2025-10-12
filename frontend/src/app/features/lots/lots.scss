@@ -1,0 +1,90 @@
+@import 'ng-zorro-antd/ng-zorro-antd.min.css';
+
+:host{
+  width: 100%;
+  height: 100%;
+}
+.table {
+  width: 100%;
+  padding: 15px 40px 15px 40px;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  .ant-table-thead > tr > th {
+    background: var( --secondary)
+  }
+  .bord {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow:
+      0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+      0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+      0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    .menu-table {
+      padding: 20px;
+      width: 100%;
+      .row {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        nz-input-group {
+          width: 230px;
+        }
+        .ant-btn {
+          width: 230px;
+          text-transform: uppercase;
+          font-weight: 590;
+          color: var(--primary);
+        }
+        .select_page_size {
+          display: flex;
+          align-items: center;
+          .select_page_size_title {
+            width: 120px;
+          }
+        }
+      }
+      .row + .row {
+        margin-top: 10px;
+        .select_page_size {
+          margin-left: auto;
+        }
+      }
+    }
+    td {
+      &.option {
+        .ant-btn-group {
+          .ant-btn {
+            width: 50px;
+          }
+        }
+      }
+      .ant-btn-group {
+        .ant-btn {
+          span {
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--primary);
+          }
+        }
+      }
+    }
+  }
+.footer-table {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+  }
+
+  mat-paginator {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+  }
+}
