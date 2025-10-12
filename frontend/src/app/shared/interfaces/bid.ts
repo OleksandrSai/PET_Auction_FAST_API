@@ -1,6 +1,6 @@
 import {UserBids} from './user';
 
-export interface Bid {
+export interface BidInterface {
   amount: number;
   state: number;
   lot_id: number;

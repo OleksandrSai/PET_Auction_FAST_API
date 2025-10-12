@@ -1,4 +1,4 @@
-import {Bid} from './bid';
+import {BidInterface} from './bid';
 
 export interface LotInterface {
   id: number;
@@ -8,7 +8,16 @@ export interface LotInterface {
   image_url: string;
   start_time: string;
   end_time: string;
-  bids: Bid[];
+  bids: BidInterface[];
   max_bid: number;
   created_at: string;
+  expand?: boolean;
+}
+
+export enum LotState {
+  RUNNING = "RUNNING",
+  ENDED = "ENDED",
+  ARCHIVED = "ARCHIVED",
+  SCHEDULED = "SCHEDULED",
+  CANCELLED = "CANCELLED",
 }

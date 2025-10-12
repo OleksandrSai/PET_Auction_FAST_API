@@ -9,11 +9,13 @@ import {NgTemplateOutlet} from '@angular/common';
 import {LotService} from '../../core/services/lot-service';
 import {LotInterface} from '../../shared/interfaces/lot';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import {LotStatus} from './lot-status/lot-status';
+
 
 @Component({
   selector: 'app-lots',
   imports: [NzTableModule, NzButtonModule, NzInputModule, NzSelectModule, FormsModule, NzPaginationModule,
-    NgTemplateOutlet, NzIconModule],
+    NgTemplateOutlet, NzIconModule, LotStatus],
   templateUrl: './lots.html',
   standalone: true,
   styleUrl: './lots.scss'
@@ -37,15 +39,13 @@ export class Lots implements OnInit{
   get pageSize(): number {
     return Number(this._pageSize);
   }
-
-onExpandChange(id: number): void {
-  if (this.expandSet.has(id)) {
-    this.expandSet.delete(id);
-  } else {
-    this.expandSet.add(id);
+  onExpandChange(id: number, checked: boolean): void {
+    if (checked) {
+      this.expandSet.add(id);
+    } else {
+      this.expandSet.delete(id);
+    }
   }
-}
-
   onPageIndexChange(newPageIndex: number): void {
     this.pageIndex = newPageIndex;
     this.loadData();
@@ -58,6 +58,7 @@ onExpandChange(id: number): void {
   loadData(): void{
    this.lotService.getAllLots(this.pageIndex, this.pageSize).subscribe((res: LotInterface[])=>{
         this.pageDataArr = res;
+        console.log(this.pageDataArr)
    })
   }
 

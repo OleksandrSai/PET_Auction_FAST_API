@@ -1,0 +1,40 @@
+<table>
+  <tbody>
+    <tr>
+      <td>State: {{currentStateLabel()}}</td>
+    </tr>
+
+    <tr>
+      <td>Started: 🟢 {{startTime | date:'HH:mm dd.MM.yy'}}</td>
+    </tr>
+
+    <tr>
+       <td>Ended: 🔴 {{endTime | date:'HH:mm dd.MM.yy'}}</td>
+    </tr>
+
+    <tr>
+      <td>
+        Number of bets:
+        @if (numberOfBets > 10) {
+          🔥 {{ numberOfBets }}
+        } @else if (numberOfBets > 5) {
+          ⚡ {{ numberOfBets }}
+        } @else if (numberOfBets > 0) {
+          💰 {{ numberOfBets }}
+        } @else {
+          ❄️ No bids
+        }
+      </td>
+    </tr>
+
+    <tr>
+      <td>Top Bid: {{ highestBid()?.user?.login || '—' }}</td>
+    </tr>
+
+    <tr>
+      <td>Remaining Time : <app-timer [startTime]="startTime" [endTime]="endTime"></app-timer></td>
+    </tr>
+
+
+  </tbody>
+</table>

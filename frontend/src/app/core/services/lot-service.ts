@@ -1,5 +1,5 @@
 import {Injectable, OnDestroy, OnInit} from '@angular/core';
-import {Observable, shareReplay, Subscription} from 'rxjs';
+import {map, Observable, shareReplay, Subscription} from 'rxjs';
 import {LotInterface} from '../../shared/interfaces/lot';
 import {HttpClient} from '@angular/common/http';
 
@@ -26,7 +26,9 @@ export class LotService implements OnDestroy {
         page_size: pageSize.toString(),
       }
     }).pipe(
-      shareReplay(1)
+      map(lots => lots.map(lot => ({ ...lot, expand: false }))),
+      shareReplay(1),
+
     );
 
     this.lotsCache.set(cacheKey, request$);

@@ -1,0 +1,13 @@
+@if (remainingTime() >= 0) {
+
+  @if (remainingTime() < 60) {
+  ⚠️
+  } @else {
+  ⏳
+  }
+  {{ formatTime(remainingTime()) }}
+
+} @else {
+🏁 Time's up
+}
+

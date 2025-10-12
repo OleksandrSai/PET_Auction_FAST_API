@@ -12,9 +12,11 @@
         <div class="select_page_size">
           <div class="select_page_size_title">Items per page:</div>
           <div class="select_page_size_body">
-<!--            <nz-select [(ngModel)]="_pageSize" (ngModelChange)="onPageSizeChange($event)">-->
-<!--              <nz-option *ngFor="let item of pageSizes" nzValue="{{ item }}" nzLabel="{{ item }}"></nz-option>-->
-<!--            </nz-select>-->
+            <nz-select [(ngModel)]="_pageSize" (ngModelChange)="onPageSizeChange($event)">-->
+              @for (item of pageSizes; track item){
+              <nz-option nzValue="{{ item }}" nzLabel="{{ item }}"></nz-option>-->
+              }
+            </nz-select>
           </div>
         </div>
       </div>
@@ -30,42 +32,41 @@
       <thead>
         <tr>
           <th nzWidth="75px">Details</th>
-          <th nzWidth="200px">Image</th>
-          <th nzWidth="120px"> Lot id</th>
+          <th nzWidth="150px">Image</th>
+          <th nzWidth="70px">Lot id</th>
           <th>Title</th>
           <th>Start price</th>
           <th>Max current bid</th>
-          <th>State</th>
+          <th nzWidth="235px">State</th>
           <th>Options</th>
         </tr>
       </thead>
       <tbody>
-  @for (element of nzTable.data; track element.id) {
+  @for (element of nzTable.data; track element; let i = $index) {
     <tr>
-      <td>
-        <button
-          nz-button
-          nzType="text"
-
-          (nzExpandChange)="onExpandChange(element.id)"
-        >
-          <span nz-icon [nzType]="expandSet.has(element.id) ? 'minus' : 'plus'"></span>
-        </button>
-      </td>
+      <td [nzExpand]="expandSet.has(element.id)" (nzExpandChange)="onExpandChange(element.id, $event)"></td>
+      <td> <img src="{{element.image_url}}" /> </td>
       <td>{{ element.id }}</td>
       <td>{{ element.title }}</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>{{ element.start_price}}</td>
+      <td>{{ element.max_bid}}</td>
+
+      <td>
+        <app-lot-status [startTime]="element.start_time"
+                        [endTime]="element.end_time"
+                        [endTime]="element.end_time"
+                        [numberOfBets]="element.bids.length || 0"
+                        [bids]="element.bids"
+                        [state]="element.state"
+        ></app-lot-status>
+      </td>
       <td class="option"></td>
     </tr>
     @if (expandSet.has(element.id)) {
       <tr>
-        <td [colSpan]="10">
+        <td [colSpan]="8">
           <div class="parent-container">
             <div class="container">
-              <!-- Контент для раскрывающейся секции -->
             </div>
           </div>
         </td>

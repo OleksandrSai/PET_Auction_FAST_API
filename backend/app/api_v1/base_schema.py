@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from utils.enums import BidState, LotState
 
 
@@ -21,6 +21,10 @@ class BaseLot(BaseOrmModel):
     start_time: datetime
     end_time: datetime
 
+    model_config = ConfigDict(
+        use_enum_values=False,
+    )
+
 
 
 class BaseBid(BaseOrmModel):
@@ -28,4 +32,6 @@ class BaseBid(BaseOrmModel):
     state: BidState
     lot_id: int
     user_id: int
+
+
 
